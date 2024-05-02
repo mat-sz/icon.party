@@ -1,0 +1,138 @@
+:root {
+  --grey-100: #1c1d21;
+  --grey-200: #2f3137;
+  --grey-300: #454851;
+  --grey-400: #545863;
+  --grey-500: #676c79;
+  --grey-600: #7b808e;
+  --grey-700: #9195a1;
+  --grey-800: #bdbfc7;
+  --grey-850: #e3e4e8;
+  --grey-900: #f4f4f6;
+  --grey-1000: #ffffff;
+
+  --accent-700: #73956f;
+  --accent-800: #7bae7f;
+  --accent-900: #95d7ae;
+}
+
+body {
+  font-family:
+    'Inter Tight',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  background: var(--grey-900);
+  color: var(--grey-100);
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22none%22%20stroke%3D%22%23e3e4e8%22%3E%3Cpath%20d%3D%22M0%20.5H31.5V32%22%2F%3E%3C%2Fsvg%3E);
+  mask-image: radial-gradient(ellipse at top center, black, transparent 95%);
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  background: var(--grey-200);
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 0.6rem 1rem;
+  height: 2rem;
+  margin-right: 0.25rem;
+  font-size: 0.9rem;
+  transition: 0.2s ease-in-out all;
+  border-radius: 1rem;
+
+  span {
+    margin-top: 1px;
+    font-size: 0.9rem;
+  }
+
+  svg {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+  }
+
+  svg:not(:last-child) {
+    margin-right: 0.25rem;
+  }
+
+  &:hover {
+    background: var(--grey-300);
+  }
+}
+
+.select {
+  display: inline-block;
+  background: var(--grey-200);
+  padding: 0 0.25rem;
+}
+
+select {
+  background: var(--grey-200);
+  color: var(--grey-900);
+  border: none;
+  outline: none !important;
+  padding: 0.25rem 0;
+  height: 2rem;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  background: var(--grey-900);
+  border-bottom: 1px solid var(--grey-850);
+  z-index: 99;
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  a {
+    font-size: 1.2rem;
+    color: var(--grey-100);
+    text-decoration: none;
+  }
+}

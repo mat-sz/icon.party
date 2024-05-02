@@ -1,0 +1,26 @@
+.output {
+  .outputTitle {
+    background: var(--grey-200);
+    color: var(--grey-900);
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .steps {
+    padding: 1rem;
+  }
+}
+
+.actions {
+  text-align: center;
+
+  button {
+    font-weight: 500;
+    padding: 2rem 4rem;
+    border-radius: 2rem;
+
+    span {
+      font-size: 1.2rem;
+    }
+  }
+}

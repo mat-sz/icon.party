@@ -1,0 +1,25 @@
+.title {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  &:first-child {
+    text-align: left;
+  }
+
+  h2 {
+    text-align: center;
+  }
+}
+
+h2 {
+  margin: 0;
+  font-weight: 500;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
