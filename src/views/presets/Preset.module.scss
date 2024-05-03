@@ -1,0 +1,34 @@
+.preset {
+  text-align: left;
+  border: 1px solid var(--grey-800);
+  border-radius: 1rem;
+  background: var(--grey-900);
+  transition: 0.2s ease-in-out all;
+  margin-bottom: 1rem;
+
+  &.selected {
+    border-color: var(--accent-800);
+    background: var(--accent-900);
+  }
+
+  label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1rem;
+    cursor: pointer;
+    padding: 1rem;
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  .description {
+    color: var(--grey-400);
+  }
+
+  &:not(.selected):hover {
+    background: var(--grey-850);
+  }
+}

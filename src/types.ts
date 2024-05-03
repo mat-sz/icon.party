@@ -149,7 +149,8 @@ export interface Settings {
 
 export interface Preset {
   id: string;
-  label: string;
+  title: string;
+  description?: string;
   settings: Settings;
 }
 
