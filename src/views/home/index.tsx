@@ -11,7 +11,7 @@ export const HomeStep: React.FC = () => {
         <h1>
           All the icon formats you need,
           <br />
-          in one place.
+          in one place
         </h1>
         <h2>
           icon.party lets you convert icon files, like nothing else before.
@@ -20,7 +20,7 @@ export const HomeStep: React.FC = () => {
           <p>
             Easily convert your icons without the need to pay for obscure macOS
             apps or hunt for 3 different icon generators. Completely free,
-            without watermarks. Your icons are never transmitted to the servers,
+            without watermarks. Your icons are never transmitted to any servers,
             everything happens in your browser.
           </p>
           <p>

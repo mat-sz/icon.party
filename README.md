@@ -7,6 +7,8 @@ Work in progress icon conversion/generation web app.
 ### Presets
 
 - Electron
+- PWA
+- iOS (AppIcon.appiconset)
 
 ### Import formats
 
@@ -25,7 +27,6 @@ Work in progress icon conversion/generation web app.
 ### Presets
 
 - Mobile (iOS/Android)
-- PWA
 - PWA splash screen
 
 ### Import formats

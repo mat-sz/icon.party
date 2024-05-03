@@ -45,10 +45,11 @@ async function generateIcons(file: File, settings: Settings) {
           switch (step.data.format) {
             case SaveFormat.PNG:
               for (const size of step.data.sizes) {
+                const scale = size.scale ?? 1;
                 const scaled = scaleImage(
                   canvas,
-                  size.width,
-                  size.height,
+                  size.width * scale,
+                  size.height * scale,
                   ImageScaleMode.STRETCH,
                 );
                 const blob = await canvasToBlob(scaled);

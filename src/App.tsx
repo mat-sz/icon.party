@@ -6,7 +6,7 @@ import './index.scss';
 import { $step } from '$/store';
 import { Step } from '$/types';
 import { HomeStep } from './views/home';
-import { PresetStep } from './views/preset';
+import { PresetsStep } from './views/presets';
 import { SettingsStep } from './views/settings';
 
 export const App: React.FC = () => {
@@ -14,7 +14,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="app">
-      <div className="bg" />
+      {step === Step.SELECT_FILE && <div className="bg" />}
       <div className="header">
         <div className="content">
           <h1>icon.party</h1>
@@ -31,7 +31,7 @@ export const App: React.FC = () => {
       </div>
       <div className="page">
         {step === Step.SELECT_FILE && <HomeStep />}
-        {step === Step.SELECT_PRESET && <PresetStep />}
+        {step === Step.SELECT_PRESET && <PresetsStep />}
         {step === Step.MODIFY_SETTINGS && <SettingsStep />}
       </div>
     </div>

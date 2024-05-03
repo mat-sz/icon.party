@@ -105,6 +105,7 @@ export interface SaveOptionsSingleSize extends SaveOptionsBase {
   sizes: {
     width: number;
     height: number;
+    scale?: number;
     filename: string;
   }[];
 }

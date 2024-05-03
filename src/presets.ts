@@ -1,7 +1,36 @@
-import { ImageScaleMode, OutputStepType, Preset, SaveFormat } from './types';
+import {
+  ImageScaleMode,
+  OutputStepType,
+  Preset,
+  SaveFormat,
+  SaveOptionsSingleSize,
+} from './types';
 
 export function svgUrl(svg: string) {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+export function pngSizes(
+  filenameFormat: string,
+  sizes: [width: number, height: number, scale?: number | undefined][],
+): SaveOptionsSingleSize['sizes'] {
+  return sizes.map(([width, height, scale = 1]) => ({
+    width,
+    height,
+    scale,
+    filename: filenameFormat
+      .replace('{width}', `${width}`)
+      .replace('{height}', `${width}`)
+      .replace('{scale}', `${width}`),
+  }));
+}
+
+export function scaleMatrix(
+  width: number,
+  height: number,
+  scales: number[],
+): [number, number, number][] {
+  return scales.map(scale => [width, height, scale]);
 }
 
 export const masks: Record<string, string> = {
@@ -13,7 +42,8 @@ export const masks: Record<string, string> = {
 export const presets: Preset[] = [
   {
     id: 'electron',
-    label: 'Electron (Windows/MacOS/Linux)',
+    title: 'Electron',
+    description: 'Windows (.ico), macOS (.icns), and Linux (.png)',
     settings: {
       outputs: [
         {
@@ -116,41 +146,115 @@ export const presets: Preset[] = [
               type: OutputStepType.SAVE,
               data: {
                 format: SaveFormat.PNG,
+                sizes: pngSizes('electron/icons/{width}x{height}.png', [
+                  [512, 512],
+                  [256, 256],
+                  [128, 128],
+                  [64, 64],
+                  [48, 48],
+                  [16, 16],
+                ]),
+              },
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: 'pwa',
+    title: 'PWA',
+    description:
+      'Progressive Web App icons: Windows, macOS, Linux, Android, iOS',
+    settings: {
+      outputs: [
+        {
+          id: 'pwa',
+          label: 'PWA (.png)',
+          steps: [
+            {
+              id: 'make_square',
+              type: OutputStepType.MAKE_SQUARE,
+              data: {
+                mode: ImageScaleMode.COVER,
+              },
+            },
+            {
+              id: 'mask',
+              type: OutputStepType.APPLY_MASK,
+              data: {
+                mask: 'ios',
+              },
+            },
+            {
+              id: 'save',
+              type: OutputStepType.SAVE,
+              data: {
+                format: SaveFormat.PNG,
                 sizes: [
                   {
                     width: 512,
                     height: 512,
-                    filename: 'electron/icons/512x512.png',
+                    filename: 'pwa/icons/512x512.png',
                   },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: 'ios',
+    title: 'iOS',
+    description: 'AppIcon.appiconset',
+    settings: {
+      outputs: [
+        {
+          id: 'ios_appiconset',
+          label: 'iOS: AppIcon.appiconset (.png)',
+          steps: [
+            {
+              id: 'make_square',
+              type: OutputStepType.MAKE_SQUARE,
+              data: {
+                mode: ImageScaleMode.COVER,
+              },
+            },
+            {
+              id: 'mask',
+              type: OutputStepType.APPLY_MASK,
+              data: {
+                mask: 'ios',
+              },
+            },
+            {
+              id: 'save',
+              type: OutputStepType.SAVE,
+              data: {
+                format: SaveFormat.PNG,
+                sizes: [
+                  ...pngSizes(
+                    'ios/iTunesArtwork@{scale}x.png',
+                    scaleMatrix(512, 512, [1, 2, 3]),
+                  ),
+                  ...pngSizes(
+                    'ios/AppIcon.appiconset/Icon-App-{width}x{height}@{scale}x.png',
+                    [
+                      ...scaleMatrix(20, 20, [1, 2, 3]),
+                      ...scaleMatrix(29, 29, [1, 2, 3]),
+                      ...scaleMatrix(40, 40, [1, 2, 3]),
+                      ...scaleMatrix(60, 60, [2, 3]),
+                      ...scaleMatrix(76, 76, [1, 2]),
+                      [83.5, 83.5, 2],
+                    ],
+                  ),
                   {
-                    width: 256,
-                    height: 256,
-                    filename: 'electron/icons/256x256.png',
-                  },
-                  {
-                    width: 128,
-                    height: 128,
-                    filename: 'electron/icons/128x128.png',
-                  },
-                  {
-                    width: 64,
-                    height: 64,
-                    filename: 'electron/icons/64x64.png',
-                  },
-                  {
-                    width: 48,
-                    height: 48,
-                    filename: 'electron/icons/48x48.png',
-                  },
-                  {
-                    width: 32,
-                    height: 32,
-                    filename: 'electron/icons/32x32.png',
-                  },
-                  {
-                    width: 16,
-                    height: 16,
-                    filename: 'electron/icons/16x16.png',
+                    width: 512,
+                    height: 512,
+                    scale: 2,
+                    filename: 'ios/AppIcon.appiconset/iTunesArtwork@2x.png',
                   },
                 ],
               },
