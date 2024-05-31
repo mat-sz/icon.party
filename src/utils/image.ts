@@ -138,3 +138,20 @@ export function maskImage(source: HTMLCanvasElement, mask: HTMLImageElement) {
 
   return canvas;
 }
+
+export function padImage(source: HTMLCanvasElement, amount: number) {
+  const canvas = document.createElement('canvas');
+  canvas.width = source.width;
+  canvas.height = source.height;
+  const ctx = canvas.getContext('2d')!;
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(
+    source,
+    source.width * amount,
+    source.height * amount,
+    source.width * (1 - amount * 2),
+    source.height * (1 - amount * 2),
+  );
+  return canvas;
+}

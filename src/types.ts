@@ -32,6 +32,7 @@ export type Background = BackgroundSolidColor | BackgroundGradient;
 export enum OutputStepType {
   MAKE_SQUARE,
   ADD_BACKGROUND,
+  ADD_PADDING,
   SCALE,
   SET_SIZE,
   APPLY_MASK,
@@ -61,6 +62,12 @@ export interface OutputStepMakeSquare extends OutputStepBase {
 export interface OutputStepAddBackground extends OutputStepBase {
   type: OutputStepType.ADD_BACKGROUND;
   data: Background;
+}
+
+export interface OutputStepAddPadding extends OutputStepBase {
+  type: OutputStepType.ADD_PADDING;
+  // Relative amount - data * width / data * height
+  data: number;
 }
 
 export interface OutputStepScale extends OutputStepBase {
@@ -132,6 +139,7 @@ export interface OutputStepSave extends OutputStepBase {
 
 export type OutputStep =
   | OutputStepMakeSquare
+  | OutputStepAddPadding
   | OutputStepAddBackground
   | OutputStepScale
   | OutputStepSetSize

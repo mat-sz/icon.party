@@ -8,6 +8,7 @@ import {
   imageToCanvas,
   loadImage,
   maskImage,
+  padImage,
   scaleImage,
 } from '$/utils/image';
 import { ImageScaleMode, OutputStepType, SaveFormat, Settings } from '$/types';
@@ -40,6 +41,9 @@ async function generateIcons(file: File, settings: Settings) {
             const mask = await loadImage(masks[step.data.mask]);
             canvas = maskImage(canvas, mask);
           }
+          break;
+        case OutputStepType.ADD_PADDING:
+          canvas = padImage(canvas, step.data);
           break;
         case OutputStepType.SAVE:
           switch (step.data.format) {

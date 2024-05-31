@@ -2,6 +2,7 @@ import { OutputStepType } from '$/types';
 import React from 'react';
 
 import { AddBackground } from './AddBackground';
+import { AddPadding } from './AddPadding';
 import { StepProps } from './types';
 import { ApplyMask } from './ApplyMask';
 import { MakeSquare } from './MakeSquare';
@@ -10,6 +11,7 @@ import { Scale } from './Scale';
 import { SetSize } from './SetSize';
 
 export const steps: Record<OutputStepType, React.FC<StepProps<any>>> = {
+  [OutputStepType.ADD_PADDING]: AddPadding,
   [OutputStepType.ADD_BACKGROUND]: AddBackground,
   [OutputStepType.APPLY_MASK]: ApplyMask,
   [OutputStepType.MAKE_SQUARE]: MakeSquare,
