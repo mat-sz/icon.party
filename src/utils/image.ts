@@ -155,3 +155,18 @@ export function padImage(source: HTMLCanvasElement, amount: number) {
   );
   return canvas;
 }
+
+export function addBackground(
+  source: HTMLCanvasElement,
+  background: HTMLImageElement,
+) {
+  const canvas = document.createElement('canvas');
+  canvas.width = source.width;
+  canvas.height = source.height;
+  const ctx = canvas.getContext('2d')!;
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(background, 0, 0, source.width, source.height);
+  ctx.drawImage(source, 0, 0, source.width, source.height);
+  return canvas;
+}

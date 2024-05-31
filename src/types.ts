@@ -1,6 +1,7 @@
 export enum BackgroundType {
   SOLID_COLOR,
   GRADIENT,
+  URL,
 }
 
 export interface BackgroundBase {
@@ -27,7 +28,15 @@ export interface BackgroundGradient extends BackgroundBase {
   };
 }
 
-export type Background = BackgroundSolidColor | BackgroundGradient;
+export interface BackgroundURL extends BackgroundBase {
+  type: BackgroundType.URL;
+  data: string;
+}
+
+export type Background =
+  | BackgroundSolidColor
+  | BackgroundGradient
+  | BackgroundURL;
 
 export enum OutputStepType {
   MAKE_SQUARE,

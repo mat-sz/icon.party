@@ -4,6 +4,7 @@ import JSZip from 'jszip';
 
 import { download } from '$/utils/file';
 import {
+  addBackground,
   canvasToBlob,
   imageToCanvas,
   loadImage,
@@ -11,7 +12,13 @@ import {
   padImage,
   scaleImage,
 } from '$/utils/image';
-import { ImageScaleMode, OutputStepType, SaveFormat, Settings } from '$/types';
+import {
+  BackgroundType,
+  ImageScaleMode,
+  OutputStepType,
+  SaveFormat,
+  Settings,
+} from '$/types';
 import { masks } from '$/presets';
 import { $file, $settings } from '$/store';
 import { writeICNS } from '$/utils/icns';
@@ -30,6 +37,16 @@ async function generateIcons(file: File, settings: Settings) {
 
     for (const step of output.steps) {
       switch (step.type) {
+        case OutputStepType.ADD_BACKGROUND:
+          switch (step.data.type) {
+            case BackgroundType.URL:
+              {
+                const background = await loadImage(step.data.data);
+                canvas = addBackground(canvas, background);
+              }
+              break;
+          }
+          break;
         case OutputStepType.MAKE_SQUARE:
           if (image.naturalWidth !== image.naturalHeight) {
             const size = Math.min(image.naturalWidth, image.naturalHeight);

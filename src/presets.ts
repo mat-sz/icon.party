@@ -1,4 +1,5 @@
 import {
+  BackgroundType,
   ImageScaleMode,
   OutputStepType,
   Preset,
@@ -39,6 +40,12 @@ export const masks: Record<string, string> = {
   ),
   macos: svgUrl(
     '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M 100 724.005 L 100 300.005 C 100 185.006 170 100 300.026 100.005 L 724 100 C 854 100.005 924 185.006 924 300.005 L 924 724.005 C 924 839.006 854 924 724 924.005 L 300.026 924.005 C 170 924.005 100 839.006 100 724.005 Z" fill="#000000" stroke="none" /></svg>',
+  ),
+};
+
+export const backgrounds: Record<string, string> = {
+  macos: svgUrl(
+    '<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><defs><filter id="shadow"><feDropShadow result="drop-shadow-0" in="SourceGraphic" style="flood-opacity: 0.3;" stdDeviation="10" dx="0" dy="10"/></filter></defs><g style="filter: url(#shadow);"><path style="fill: rgb(255, 255, 255);" d="M 100 724 L 100 300 C 100 185.001 170 99.995 300.026 100 L 724 99.995 C 854 100 924 185.001 924 300 L 924 724 C 924 839.001 854 923.995 724 924 L 300.026 924 C 170 924 100 839.001 100 724 Z" /></g></svg>',
   ),
 };
 
@@ -106,6 +113,14 @@ export const presets: Preset[] = [
               type: OutputStepType.APPLY_MASK,
               data: {
                 mask: 'macos',
+              },
+            },
+            {
+              id: 'add_background',
+              type: OutputStepType.ADD_BACKGROUND,
+              data: {
+                type: BackgroundType.URL,
+                data: backgrounds['macos'],
               },
             },
             {
