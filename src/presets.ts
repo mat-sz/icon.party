@@ -21,8 +21,8 @@ export function pngSizes(
     scale,
     filename: filenameFormat
       .replace('{width}', `${width}`)
-      .replace('{height}', `${width}`)
-      .replace('{scale}', `${width}`),
+      .replace('{height}', `${height}`)
+      .replace('{scale}', `${scale}`),
   }));
 }
 
